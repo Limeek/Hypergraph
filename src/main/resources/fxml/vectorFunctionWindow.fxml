@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.VectorFunctionWindowController">
+   <children>
+      <VBox>
+         <children>
+            <HBox>
+               <children>
+                  <FlowPane fx:id="fpFuncs" prefWidth="688.0">
+                     <children>
+                        <Button fx:id="btnMaxSum" mnemonicParsing="false" text="MAXSUM" wrapText="true" />
+                        <Button fx:id="btnMinSum" mnemonicParsing="false" text="MINSUM" wrapText="true" />
+                        <Button fx:id="btnMaxAvg" mnemonicParsing="false" text="MAXAVG" wrapText="true" />
+                        <Button fx:id="btnMinAvg" mnemonicParsing="false" text="MINAVG" wrapText="true" />
+                        <Button fx:id="btnMaxMax" mnemonicParsing="false" text="MAXMAX" wrapText="true" />
+                        <Button fx:id="btnMinMin" mnemonicParsing="false" text="MINMIN" wrapText="true" />
+                        <Button fx:id="btnMaxMin" mnemonicParsing="false" text="MAXMIN" wrapText="true" />
+                        <Button fx:id="btnMinMax" mnemonicParsing="false" text="MINMAX" wrapText="true" />
+                        <Button fx:id="btnMaxProd" mnemonicParsing="false" text="MAXPROD" wrapText="true" />
+                        <Button fx:id="btnMinProd" mnemonicParsing="false" text="MINPROD" wrapText="true" />
+                     </children>
+                  </FlowPane>
+               </children>
+            </HBox>
+            <HBox prefHeight="31.0" prefWidth="688.0">
+               <children>
+                  <FlowPane fx:id="fpWeight" prefHeight="100.0" prefWidth="695.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER">
+               <children>
+                  <Button fx:id="btnDeleteFunc" focusTraversable="false" mnemonicParsing="false" text="Удалить ВЦФ" wrapText="true" />
+               </children>
+            </HBox>
+            <ScrollPane prefHeight="221.0">
+               <content>
+                  <TextArea fx:id="taFuncDescr" editable="false" prefHeight="218.0" prefWidth="686.0" />
+               </content>
+            </ScrollPane>
+            <HBox alignment="CENTER" prefHeight="31.0" spacing="5.0">
+               <children>
+                  <Button fx:id="btnHelp" mnemonicParsing="false" text="Помощь" />
+                  <Button fx:id="btnBack" alignment="CENTER" focusTraversable="false" mnemonicParsing="false" text="Назад" wrapText="true" HBox.hgrow="NEVER">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="btnNext" focusTraversable="false" mnemonicParsing="false" text="Далее" wrapText="true" />
+                  <Button fx:id="btnExit" focusTraversable="false" mnemonicParsing="false" text="Выход" wrapText="true" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="118.0" prefWidth="347.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.VertsAndPropsWindowController">
+   <children>
+      <VBox prefHeight="113.0" prefWidth="347.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <Label text="Введите количество вершин" />
+                  <TextField fx:id="tfVertsCount" prefHeight="25.0" prefWidth="103.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+               <children>
+                  <Label text="Введите количество долей" />
+                  <TextField fx:id="tfPropsCount" prefHeight="25.0" prefWidth="103.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="38.0" prefWidth="347.0" spacing="5.0">
+               <children>
+                  <Button fx:id="btnCancel" mnemonicParsing="false" text="Выход" />
+                  <Button fx:id="btnOk" mnemonicParsing="false" text="Далее" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

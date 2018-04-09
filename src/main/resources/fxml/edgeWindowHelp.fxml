@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="155.0" prefWidth="664.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox prefHeight="157.0" prefWidth="664.0">
+         <children>
+            <HBox>
+               <children>
+                  <Label alignment="TOP_LEFT" text="В этом окне создаются ребра гиперграфа. Перед этим необходимо задать количество весов в ребрах. Если ребра уже созданы и количество весов необходимо сменить, при нажатии на поле весов вам будет предложено удалить все ребра. Для того чтобы создать ребро, нужно нажать на кнопки вершин, которые находятся под долями, и подтвердить выбор вершин нажатием кнопки &quot;Создать ребро&quot;, после этого откроется окно с вводом веса/весов для ребер. Во время создания ребра можно отследить его промежуточное состояние по полю &quot;Текущее ребро&quot;. Для сброса текущего ребра необходимо нажать на кнопку &quot;Сброс&quot;. Для удаления ребра нужно нажать на кнопку &quot;Удалить ребро&quot; и в открывшемся окне нажать на ребра, которые необходимо удалить." wrapText="true" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

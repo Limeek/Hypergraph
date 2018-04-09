@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ResultsWindowController">
+   <children>
+      <VBox prefHeight="400.0" prefWidth="600.0" />
+      <HBox prefHeight="368.0" prefWidth="600.0">
+         <children>
+            <ScrollPane prefHeight="306.0" prefWidth="615.0">
+               <content>
+                  <GridPane fx:id="gridPane" prefHeight="366.0" prefWidth="598.0">
+
+                  </GridPane>
+               </content>
+            </ScrollPane>
+         </children>
+      </HBox>
+      <HBox alignment="TOP_CENTER" layoutY="368.0" prefHeight="30.0" prefWidth="600.0" spacing="5.0">
+         <children>
+            <Button fx:id="btnExit" mnemonicParsing="false" text="Выход" wrapText="true" />
+         </children>
+         <padding>
+            <Insets top="2.0" />
+         </padding>
+      </HBox>
+   </children>
+</AnchorPane>

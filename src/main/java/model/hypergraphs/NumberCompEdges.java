@@ -1,4 +1,4 @@
-package hypergraphs;
+package model.hypergraphs;
 
 import java.util.Comparator;
 

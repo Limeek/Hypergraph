@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="622.0" prefWidth="602.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EdgesWindowController">
+   <children>
+      <VBox prefHeight="623.0" prefWidth="602.0">
+         <children>
+            <HBox fillHeight="false" prefHeight="37.0" prefWidth="602.0" spacing="5.0">
+               <children>
+                  <Label prefHeight="23.0" prefWidth="180.0" text="Количетсво весов у ребер:" wrapText="true">
+                     <HBox.margin>
+                        <Insets bottom="5.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="tfEdgeWeight" prefHeight="21.0" prefWidth="148.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </TextField>
+                  <Label fx:id="warningLabel" prefHeight="34.0" prefWidth="319.0" text="Введите количество весов!" textFill="RED" wrapText="true">
+                     <padding>
+                        <Insets bottom="10.0" left="5.0" />
+                     </padding>
+                  </Label>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="5.0" top="5.0" />
+               </padding>
+            </HBox>
+            <HBox prefHeight="232.0" prefWidth="602.0">
+               <children>
+                  <ScrollPane prefHeight="320.0" prefWidth="612.0">
+                     <content>
+                        <GridPane fx:id="edgeGrid" prefHeight="229.0" prefWidth="599.0">
+                           <columnConstraints>
+                              <ColumnConstraints />
+                              <ColumnConstraints />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints />
+                              <RowConstraints />
+                           </rowConstraints>
+                        </GridPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </HBox>
+            <HBox prefHeight="37.0" prefWidth="604.0" spacing="5.0">
+               <children>
+                  <Label prefHeight="22.0" prefWidth="102.0" text="Текущее ребро:">
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding>
+                  </Label>
+                  <TextField fx:id="tfEdge" editable="false" prefHeight="25.0" prefWidth="189.0" />
+                  <Button fx:id="btnCreateEdge" focusTraversable="false" mnemonicParsing="false" text="Создать ребро" wrapText="true" />
+                  <Button fx:id="btnDelete" focusTraversable="false" mnemonicParsing="false" text="Удалить ребро" wrapText="true" />
+                  <Button fx:id="btnClear" focusTraversable="false" mnemonicParsing="false" text="Сброс" wrapText="true" />
+               </children>
+               <padding>
+                  <Insets left="5.0" top="5.0" />
+               </padding>
+            </HBox>
+            <HBox prefHeight="280.0" prefWidth="602.0">
+               <children>
+                  <ScrollPane prefHeight="278.0" prefWidth="612.0">
+                     <content>
+                        <TextArea fx:id="taEdgeDescr" editable="false" prefHeight="278.0" prefWidth="600.0" />
+                     </content>
+                  </ScrollPane>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="33.0" prefWidth="602.0" spacing="5.0">
+               <children>
+                  <Button fx:id="btnHelp" focusTraversable="false" mnemonicParsing="false" text="Помощь" wrapText="true" />
+                  <Button fx:id="btnBack" focusTraversable="false" mnemonicParsing="false" text="Назад" wrapText="true" />
+                  <Button fx:id="btnNext" focusTraversable="false" mnemonicParsing="false" text="Далее" wrapText="true" />
+                  <Button fx:id="btnCancel" focusTraversable="false" mnemonicParsing="false" text="Выход" wrapText="true" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

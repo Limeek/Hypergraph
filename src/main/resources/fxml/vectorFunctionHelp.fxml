@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="102.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox prefHeight="92.0" prefWidth="601.0">
+         <children>
+            <HBox>
+               <children>
+                  <Label alignment="TOP_LEFT" text="В этом окне создаются ВЦФ. Для создания ВЦФ необходимо нажать на нужную функцию и кнопку веса. Чтобы удалить ВЦФ необходимо нажать кнопку &quot;Удалить ВЦФ&quot;, в открывшемся окне выбрать ВЦФ для удаления. После создания ВЦФ при нажатии на кнопку &quot;Далее&quot; открывается окно с результатами работы программы." wrapText="true" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

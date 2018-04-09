@@ -1,36 +1,41 @@
-package hypergraphs;
+package model.hypergraphs;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Edge {
-    private List<Vertex> verts;
+    private List<Vert> verts;
     private int number;
 
-    protected Edge(List<Vertex> verts,int number){
+    protected Edge(List<Vert> verts, int number){
         this.number=number;
         this.verts=verts;
     }
     //Проверка смежности с ребром
     public boolean checkAdjacency(Edge e){
         boolean b = false;
-        for(Vertex i: verts)
-            for(Vertex j: e.getVerts())
+        for(Vert i: verts)
+            for(Vert j: e.getVerts())
                 if (i.getNumber() == j.getNumber())
                     b = true;
         return b;
     }
-    public List<Vertex> getVerts(){
+    public List<Vert> getVerts(){
         return verts;
     }
     public int getNumber(){
         return number;
     }
-
+    public void setNumber(int number) {
+        this.number = number;
+    }
+    public void sortVerts(){
+        verts.sort(new NumberCompVerts());
+    }
     @Override
     public String toString() {
         String strverts = new String();
-        for(Vertex v : verts)
+        for(Vert v : verts)
             strverts += v.getNumber() + " ";
         return "Ребро № " + this.number + " Вершины: " + strverts;
     }

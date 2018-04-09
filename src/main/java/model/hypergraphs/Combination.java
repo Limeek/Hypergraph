@@ -1,4 +1,4 @@
-package hypergraphs;
+package model.hypergraphs;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ public class Combination {
         this.number=number;
     }
     Combination(List<Integer> integerList,List<Edge> edgeList){
-        List<Edge> tmp=new ArrayList<Edge>();
+        ArrayList<Edge> tmp=new ArrayList<Edge>();
         for(int i=0;i< integerList.size();i++)
             for(int j=0;j<edgeList.size();j++)
                 if(integerList.get(i) == edgeList.get(j).getNumber()-1) tmp.add(edgeList.get(j));

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="48.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox prefHeight="91.0" prefWidth="600.0">
+         <children>
+            <HBox>
+               <children>
+                  <Label alignment="TOP_LEFT" text="Распределяем все вершины по долям. Для этого сначала выбирается вершина нажатием по ней, а потом доля, которой она будет принадлежать. Если нужно удалить вершину из какой-то доли, нажмите на кнопку вершины под соответсвующей долей." textAlignment="CENTER" wrapText="true" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
