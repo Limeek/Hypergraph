@@ -15,9 +15,10 @@ import model.hypergraphs.Vert;
 import model.weightedhypergraph.WeightedEdge;
 import model.weightedhypergraph.WeightedHypergraph;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import util.AlertUtils;
 import util.CheckHypergraph;
 import util.ExcelWorker;
-import util.AlertUtils;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
