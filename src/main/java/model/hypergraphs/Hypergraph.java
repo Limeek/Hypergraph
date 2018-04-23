@@ -153,41 +153,6 @@ public class Hypergraph {
         }
     }
 
-    public void printinfo() throws IOException {
-        File outputfile = new File("output.txt");
-        FileWriter fileWriter = new FileWriter(outputfile);
-        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-
-        bufferedWriter.write("Список вершин: \n");
-        for(Vert v : verts){
-            bufferedWriter.write(v.toString() + "\n");
-        }
-
-        bufferedWriter.write("\n");
-
-        bufferedWriter.write("Список ребер: \n");
-        for(Edge e: edges) {
-            bufferedWriter.write(e.toString());
-            bufferedWriter.write("\n");
-        }
-        bufferedWriter.write("\n");
-
-        bufferedWriter.write("Сочетания : \n");
-        for(Combination c : combs){
-            bufferedWriter.write(c.toString());
-            bufferedWriter.write("\n");
-        }
-        bufferedWriter.write("\n");
-
-        bufferedWriter.write("Совершенные сочетания : \n");
-        for(Combination c : perfCombs){
-            bufferedWriter.write(c.toString());
-            bufferedWriter.write("\n");
-        }
-
-        bufferedWriter.close();
-    }
-
     public String hypergraphInfo(){
         StringBuilder sb = new StringBuilder();
         sb.append("Количество вершин: " + verts.size());
