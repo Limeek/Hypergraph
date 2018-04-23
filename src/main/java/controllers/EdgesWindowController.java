@@ -14,6 +14,7 @@ import model.hypergraphs.Proportion;
 import model.hypergraphs.Vert;
 import model.weightedhypergraph.WeightedEdge;
 import model.weightedhypergraph.WeightedHypergraph;
+import util.AlertUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -129,48 +130,24 @@ public class EdgesWindowController {
             if(edgeWeightCount == 0) flagWeight = false;
             if(edgeWeightCount > 5) flagWeightCount = false;
             if(tmpEdgeVerts.size() > hypergraph.getProps().size()){
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Ошибка");
-                alert.setHeaderText("Ошибка");
-                alert.setContentText("Количество вершин в ребре больше чем долей");
-                alert.showAndWait();
+                AlertUtils.showEdgeHasMoreVertsThenProp();
                 tfEdge.setText("");
                 tmpEdgeVerts.clear();
             }else if(!flagProp){
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Ошибка");
-                alert.setHeaderText("Ошибка");
-                alert.setContentText("Ребро лежит в доле");
-                alert.showAndWait();
+                AlertUtils.showEdgeIsInProp();
                 tfEdge.setText("");
                 tmpEdgeVerts.clear();
             }else if (!flagEdge){
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Ошибка");
-                alert.setHeaderText("Ошибка");
-                alert.setContentText("Ребро уже существует");
-                alert.showAndWait();
+                AlertUtils.showEdgeExists();
                 tfEdge.setText("");
                 tmpEdgeVerts.clear();
             }else if(!flagWeight){
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Ошибка");
-                alert.setHeaderText("Ошибка");
-                alert.setContentText("Введите количество весов");
-                alert.showAndWait();
+                AlertUtils.showNoWeight();
             }else if(!flagWeightCount){
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Ошибка");
-                alert.setHeaderText("Ошибка");
-                alert.setContentText("Количество весов не должно быть больше 5");
-                alert.showAndWait();
+                AlertUtils.showHasMoreThanFiveWeight();
             }
             else if(tmpEdgeVerts.isEmpty()){
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Ошибка");
-                alert.setHeaderText("Ошибка");
-                alert.setContentText("Пустое ребро");
-                alert.showAndWait();
+                AlertUtils.showEdgeIsEmpty();
                 tfEdge.setText("");
             }
             else {
@@ -185,7 +162,7 @@ public class EdgesWindowController {
                     loader.setLocation(getClass().getResource("/fxml/edgeWeightWindow.fxml"));
                     Parent root = loader.load();
                     Stage stage = new Stage();
-                    stage.setTitle("HypergraphApp");
+                    stage.setTitle("Веса");
                     stage.setScene(new Scene(root));
                     stage.setResizable(false);
                     EdgeWeightController controller = loader.getController();

@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Hypergraph" />
+        <module name="HypergraphApp" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Hypergraph" target="1.8" />
+      <module name="HypergraphApp" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

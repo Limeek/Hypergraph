@@ -2,6 +2,7 @@ package model.weightedhypergraph;
 
 import model.hypergraphs.Edge;
 import model.hypergraphs.Vert;
+
 import java.util.List;
 
 public class WeightedEdge extends Edge {
@@ -17,10 +18,9 @@ public class WeightedEdge extends Edge {
         weight = new double[weightCount];
     }
 
-    public void calculateWeight(){
-        weight[0] = ((WeightedVert) getVerts().get(0)).getWeight().get(0) * ((WeightedVert) getVerts().get(2)).getWeight().get(0);
-        weight[1] = ((WeightedVert) getVerts().get(1)).getWeight().get(0);
-        weight[2] = ((WeightedVert) getVerts().get(1)).getWeight().get(0) + ((WeightedVert) getVerts().get(2)).getWeight().get(1);
+    public  WeightedEdge(List<Vert> verts,int number,double[] weight){
+        super(verts,number);
+        this.weight = weight;
     }
 
     public double[] getWeight() {
@@ -29,10 +29,10 @@ public class WeightedEdge extends Edge {
 
     @Override
     public String toString() {
-        String strweight = "";
+        StringBuilder strweight = new StringBuilder();
         for(Double d: weight)
-            strweight += d + " ";
-        return super.toString() + " Веса " + strweight;
+            strweight.append(d).append(" ");
+        return super.toString() + " Веса " + strweight.toString();
     }
 
 }

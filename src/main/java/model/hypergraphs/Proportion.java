@@ -35,10 +35,10 @@ public class Proportion {
 
     @Override
     public String toString() {
-        String tmpString = "";
+        StringBuilder vertsString = new StringBuilder();
         for(Vert v : this.verts){
-            tmpString += v.getNumber() + " ";
+            vertsString.append(v.getNumber()).append(" ");
         }
-        return "Доля №" + this.number + " Вершины " + tmpString;
+        return "Доля №" + this.number + " Вершины " + vertsString.toString();
     }
 }

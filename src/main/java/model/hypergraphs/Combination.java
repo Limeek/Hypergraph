@@ -31,11 +31,13 @@ public class Combination {
         return edges;
     }
 
+
+
     @Override
     public String toString() {
-        String stredges = new String();
+        StringBuilder edgesString = new StringBuilder();
         for(Edge e : edges)
-            stredges += e.getNumber() + " ";
-        return "Сочетание № " + number + " Ребра: " + stredges;
+            edgesString.append(e.getNumber()).append(" ");
+        return "Сочетание № " + number + " Ребра: " + edgesString.toString();
     }
 }

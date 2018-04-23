@@ -13,8 +13,6 @@ public class EdgeDeleteWindowController {
     FlowPane fpEdges;
     @FXML
     Button btnOk;
-    @FXML
-    public void initialize(){}
 
     List<Edge> edges;
 

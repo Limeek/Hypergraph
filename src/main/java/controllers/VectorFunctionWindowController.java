@@ -13,6 +13,7 @@ import model.weightedhypergraph.Solution;
 import model.weightedhypergraph.VectorFunction;
 import model.weightedhypergraph.WeightedEdge;
 import model.weightedhypergraph.WeightedHypergraph;
+
 import java.io.IOException;
 
 public class VectorFunctionWindowController {
@@ -52,8 +53,7 @@ public class VectorFunctionWindowController {
     Button btnMinProd;
     @FXML
     Button btnHelp;
-    @FXML
-    private void initialize(){}
+
 
     private WeightedHypergraph hypergraph;
     private static int funcCount = 1;
@@ -121,6 +121,7 @@ public class VectorFunctionWindowController {
         }));
         btnNext.setOnMouseClicked(event -> {
             try {
+                hypergraph.setMatrixofadj(null);
                 hypergraph.getCombs().clear();
                 hypergraph.getPerfCombs().clear();
                 Solution solution = hypergraph.getSolution();
@@ -128,31 +129,32 @@ public class VectorFunctionWindowController {
                 hypergraph.makecombs();
                 hypergraph.calcPerfCombs();
                 solution.setCombs(hypergraph.getPerfCombs());
-
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/fxml/resultsWindow.fxml"));
-                Parent root = loader.load();
-                Stage stage = new Stage();
-                stage.setTitle("Результат");
-                stage.setScene(new Scene(root));
-                stage.setResizable(false);
-                ResultsWindowController controller = loader.getController();
-                controller.setHypergraph(hypergraph);
-                controller.setupWindow();
-                controller.setEvents();
-                stage.showAndWait();
-
+                if(hypergraph.getPerfCombs().isEmpty()){
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Ошибка");
+                    alert.setHeaderText("Ошибка");
+                    alert.setContentText("Совершенных сочетаний не найдено");
+                    alert.showAndWait();
+                }
+                else {
+                    FXMLLoader loader = new FXMLLoader();
+                    loader.setLocation(getClass().getResource("/fxml/resultsWindow.fxml"));
+                    Parent root = loader.load();
+                    Stage stage = new Stage();
+                    stage.setTitle("Результат");
+                    stage.setScene(new Scene(root));
+                    stage.setResizable(false);
+                    ResultsWindowController controller = loader.getController();
+                    controller.setHypergraph(hypergraph);
+                    controller.setupWindow();
+                    controller.setEvents();
+                    stage.showAndWait();
+                }
             }
             catch (IOException e){
                 e.printStackTrace();
             }
-            catch (IndexOutOfBoundsException e) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Ошибка");
-                alert.setHeaderText("Ошибка");
-                alert.setContentText("Совершенных сочетаний не найдено");
-                alert.showAndWait();
-            }
+
         });
         btnDeleteFunc.setOnMouseClicked(event -> {
             try {

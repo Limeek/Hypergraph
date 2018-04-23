@@ -6,13 +6,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import model.hypergraphs.Proportion;
 import model.hypergraphs.Vert;
 import model.weightedhypergraph.WeightedHypergraph;
+import util.AlertUtils;
 
 import java.io.IOException;
 import java.util.List;
@@ -33,10 +35,7 @@ public class PropsWindowController {
     private WeightedHypergraph hypergraph;
     private int[] propColumnSize;
     private ObservableList<Button> btnsVerts;
-    @FXML
-    private void initialize(){
 
-    }
 
     public PropsWindowController(){
 
@@ -49,12 +48,19 @@ public class PropsWindowController {
         }));
 
         btnNext.setOnMouseClicked((event -> {
-            if(!fpBtnsVerts.getChildren().isEmpty()){
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Ошибка");
-                alert.setHeaderText("Ошибка");
-                alert.setContentText("Есть вершины без доли");
-                alert.showAndWait();
+            boolean flagEqualSizeProps = true;
+            List<Proportion> props = hypergraph.getProps();
+            for(int i = 1; i< props.size(); i++){
+                if (props.get(i-1).getVerts().size() != props.get(i).getVerts().size()) {
+                    flagEqualSizeProps = false;
+                    break;
+                }
+            }
+            if(!flagEqualSizeProps){
+                AlertUtils.showNotEqualPropsAlert();
+            }
+            else if(!fpBtnsVerts.getChildren().isEmpty()){
+                AlertUtils.showHasRemainingVerts();
             }
             else
             try {
@@ -171,7 +177,7 @@ public class PropsWindowController {
                     Proportion prop = (Proportion) button.getUserData();
                     propColumnSize[prop.getNumber() - 1]++;
                     prop.getVerts().add(vert);
-                    gridPane.add((Button) button.getScene().getFocusOwner(), prop.getNumber(), propColumnSize[prop.getNumber() - 1]);
+                    gridPane.add(button.getScene().getFocusOwner(), prop.getNumber(), propColumnSize[prop.getNumber() - 1]);
                     System.out.println(propColumnSize[prop.getNumber() - 1]);
                 }
             }));

@@ -3,7 +3,6 @@ package model.hypergraphs;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 public class Hypergraph {
@@ -22,10 +21,10 @@ public class Hypergraph {
         props = new ArrayList<Proportion>();
     }
 
-    public Vert getVertWithNumber(List<Vert> verts, int j){
+    public Vert getVertWithNumber(int number){
         Vert result = null;
         for(Vert v : verts) {
-            if (v.getNumber() == j) {
+            if (v.getNumber() == number) {
                 result = v;
                 break;
             }
@@ -33,102 +32,40 @@ public class Hypergraph {
         return result;
     }
 
-    public void fullLoad(){
-
-        File file= new File("input3.txt");
-        BufferedReader bufferedReader= null;
-        String text=null;
-        List<String> content = new ArrayList<String>();
-
-        try{
-            bufferedReader=new BufferedReader(new FileReader(file));
-            while((text=bufferedReader.readLine()) != null){
-                content.add(text);
-            }
-        }
-        catch(IOException e) {
-            e.printStackTrace();
-        }
-
-        for(int i=0;i<Integer.valueOf(content.get(0));i++)
-            verts.add(new Vert(i+1));
-
-        for(int i=2;i<Integer.valueOf(content.get(1))+2;i++){
-            List<String> tmp=new ArrayList<>(Arrays.asList((content.get(i).split(" "))));
-            List<Vert> tmpVert= new ArrayList<>();
-            int n = Integer.valueOf(tmp.get(0));
-            tmp.remove(0);
-            for(int j=0;j<tmp.size();j++)
-                tmpVert.add(getVertWithNumber(verts,Integer.valueOf(tmp.get(j))));
-            edges.add(new Edge(tmpVert,n));
-        }
-        verts.sort(new NumberCompVerts());
-    }
-
-    public void partLoad(){
-        File file = new File("inputprops.txt");
-        BufferedReader bufferedReader= null;
-        String text=null;
-        List<String> content = new ArrayList<String>();
-
-        try{
-            bufferedReader=new BufferedReader(new FileReader(file));
-            while((text=bufferedReader.readLine()) != null){
-                content.add(text);
-            }
-        }
-        catch(IOException e) {
-            e.printStackTrace();
-        }
-
-        for(int i=0;i<Integer.valueOf(content.get(0));i++)
-            verts.add(new Vert(i+1));
-
-        for(int i=2;i<Integer.valueOf(content.get(1))+2;i++){
-            List<String> tmp=new ArrayList<>(Arrays.asList((content.get(i).split(" "))));
-            List<Vert> tmpVert= new ArrayList<>();
-            int n = Integer.valueOf(tmp.get(0));
-            tmp.remove(0);
-            for(int j=0;j<tmp.size();j++)
-                tmpVert.add(getVertWithNumber(verts,Integer.valueOf(tmp.get(j))));
-            props.add(new Proportion(tmpVert,n));
-        }
-    }
-
     public void buildEdges(){
         int number = 1;
-        List<Vert> tmpVert = new ArrayList<>();
+        List<Vert> vertsOfEdge = new ArrayList<>();
         for(Vert v: props.get(0).getVerts()){
-            tmpVert.clear();
+            vertsOfEdge.clear();
             Proportion workProp = props.get(1);
-            tmpVert.add(v);
-            recBuildEdges(number,tmpVert,workProp);
+            vertsOfEdge.add(v);
+            recBuildEdges(number,vertsOfEdge,workProp);
         }
         for(Edge e : edges) {
             e.setNumber(number);
             number++;
         }
-        System.out.println("Edge count " + edges.size() );
     }
-    public void recBuildEdges(int number, List<Vert> tmpVert, Proportion workProp){
+
+    private void recBuildEdges(int number, List<Vert> vertsOfEdge, Proportion workProp){
         List<Vert> instanceOfVerts = new ArrayList<>();
-        instanceOfVerts.addAll(tmpVert);
+        instanceOfVerts.addAll(vertsOfEdge);
         for (Vert v : workProp.getVerts()){
-            tmpVert.clear();
-            tmpVert.addAll(instanceOfVerts);
-            tmpVert.add(v);
-            if(tmpVert.size() != props.size()){
+            vertsOfEdge.clear();
+            vertsOfEdge.addAll(instanceOfVerts);
+            vertsOfEdge.add(v);
+            if(vertsOfEdge.size() != props.size()){
                 Proportion newWorkProp;
                 newWorkProp = props.get(props.indexOf(workProp) + 1);
-                recBuildEdges(number,tmpVert,newWorkProp);
+                recBuildEdges(number,vertsOfEdge,newWorkProp);
             }
             else{
-                edges.add(new Edge(new ArrayList<Vert>(tmpVert),number));
+                edges.add(new Edge(new ArrayList<Vert>(vertsOfEdge),number));
             }
         }
     }
 
-    public void makeMatrixOfAdj(){                                                                                      //метод создания матрицы смежности
+    public void makeMatrixOfAdj(){
         matrixofadj = new int[edges.size()][edges.size()];
         for (int i = 0; i < edges.size(); i++)
             for (int j = 0; j < edges.size(); j++) {
@@ -138,64 +75,70 @@ public class Hypergraph {
             }
     }
 
-    public void makecombs() {                                                                                           //метод создания сочетаний
-       List<Integer>[] simp = new ArrayList[edges.size()];
+    public void makecombs() {
+       List<Integer>[] simpleMatrixOfAdj = new ArrayList[edges.size()];
 
-       for (int i = 0; i < simp.length; i++)                                                                            //
-           simp[i] = new ArrayList<Integer>();                                                                          //
-                                                                                                                        //  Формирование упрощенной матрицы смежности
-       for (int i = 0; i < edges.size(); i++)                                                                           //
-           for (int j = 0; j < edges.size(); j++)                                                                       //
-               if (matrixofadj[i][j] == -1) simp[i].add(j);                                                             //
+       for (int i = 0; i < simpleMatrixOfAdj.length; i++)
+           simpleMatrixOfAdj[i] = new ArrayList<Integer>();
+
+       for (int i = 0; i < edges.size(); i++)
+           for (int j = 0; j < edges.size(); j++)
+               if (matrixofadj[i][j] == -1) simpleMatrixOfAdj[i].add(j);
 
 
-       List<Integer> tmp = new ArrayList<>();
+       List<Integer> futureComb = new ArrayList<>();
        List<Integer> index = new ArrayList<>();
-       List<List<Integer>> edgesofcomb = new ArrayList<>();
+       List<List<Integer>> combsInEdgesList = new ArrayList<>();
 
-       for(int i=0;i<simp.length;i++){                                                                                  //
-           index.removeAll(index);                                                                                      //
-           tmp.removeAll(tmp);                                                                                          //
-           tmp.add(i);                                                                                                  //  Запуск алгоритма по поиску сочетаний
-                                                                                                                        //
-           for(int i1=0;i1<simp[i].size();i1++){                                                                        //
-               index.add(simp[i].get(i1));                                                                              //
+       for(int i=0;i<simpleMatrixOfAdj.length;i++){
+           index.removeAll(index);
+           futureComb.removeAll(futureComb);
+           futureComb.add(i);
+           for(int i1=0;i1<simpleMatrixOfAdj[i].size();i1++){
+               index.add(simpleMatrixOfAdj[i].get(i1));
            }
-           rt(simp,tmp,index,edgesofcomb);                                                                              //
-       }                                                                                                                //
-       if(combs.size()!=1)
-       for(int i=0;i<combs.size();i++)                                                                                  // Удаление повторяющихся сочетаний
-          for(int i1=0;i1<combs.size();i1++)
-            if(((combs.get(i).getEdges().equals(combs.get(i1).getEdges())) && i!=i1) || combs.get(i).getEdges().size() == 1) combs.remove(i);
+           recBuildCombs(simpleMatrixOfAdj,futureComb,index,combsInEdgesList);
+       }
 
-       for(int i=0;i<combs.size();i++)                                                                                  // Присваивание номеров сочетаниям
-           combs.get(i).setNumber(i+1);
+       if(combs.size() != 1) {
+           combs.removeIf(comb -> comb.getEdges().size() == 1);
+           for (int i = 0; i < combs.size(); i++) {
+               for (int i1 = 0; i1 < combs.size(); i1++) {
+                   if (combs.get(i1).getEdges().equals(combs.get(i).getEdges()) && i != i1)
+                       combs.remove(combs.get(i1));
+               }
+           }
+       }
+
+       for(int i=0;i<combs.size();i++) {
+           combs.get(i).setNumber(i + 1);
+       }
    }
 
-    private void rt(List<Integer>[] simp,List<Integer> tmp,List<Integer> index,List<List<Integer>> edgesofcomb){         //Рекурсивный метод для пробега по упрощенной матрице смежности
-        edgesofcomb.add(tmp);
-        combs.add(new Combination(edgesofcomb.get(edgesofcomb.size()-1),edges));
+    private void recBuildCombs(List<Integer>[] simpleMatrixOfAdj, List<Integer> futureComb, List<Integer> index, List<List<Integer>> combsInEdgesList){
+        combsInEdgesList.add(futureComb);
+        combs.add(new Combination(combsInEdgesList.get(combsInEdgesList.size()-1),edges));
         combs.get(combs.size()-1).sortEdges();
 
         for(int i=0;i<index.size();++i){
-            List<Integer> tmpindex=new ArrayList<>();
+            List<Integer> newIndex =new ArrayList<>();
             List<Integer> copy= new ArrayList<>();
-            List<Integer> tmpp ;
-            if (simp[index.get(i)].containsAll(tmp)){                                                                   // Проверка основого условия
-                copy.addAll(simp[index.get(i)]);
-                tmpp=new ArrayList<>(tmp);
-                tmpp.add(index.get(i));
-                copy.removeAll(tmp);
+            List<Integer> newFutureComb ;
+            if (simpleMatrixOfAdj[index.get(i)].containsAll(futureComb)){
+                copy.addAll(simpleMatrixOfAdj[index.get(i)]);
+                newFutureComb =new ArrayList<>(futureComb);
+                newFutureComb.add(index.get(i));
+                copy.removeAll(futureComb);
                 for(int i1=0;i1<copy.size();i1++)
-                    tmpindex.add(copy.get(i1));
-                rt(simp,tmpp,tmpindex,edgesofcomb);
+                    newIndex.add(copy.get(i1));
+                recBuildCombs(simpleMatrixOfAdj,newFutureComb,newIndex,combsInEdgesList);
             }
         }
     }
 
     public void calcPerfCombs(){
         List<Vert> tmpVerts = new ArrayList<>();
-        Boolean tmpFlag = false;
+        Boolean isPerfectComb = false;
         for(Combination c : combs){
             tmpVerts.clear();
             for (Edge e: c.getEdges())
@@ -203,14 +146,14 @@ public class Hypergraph {
                     if(!tmpVerts.contains(v)) tmpVerts.add(v);
             tmpVerts.sort(new NumberCompVerts());
             for(int i = 0 ; i < verts.size(); i++){
-                if(verts.get(i).equals(tmpVerts.get(i))) tmpFlag = true;
-                else {tmpFlag = false; break;}
+                if(verts.get(i).equals(tmpVerts.get(i))) isPerfectComb = true;
+                else {isPerfectComb = false; break;}
             }
-            if (tmpFlag == true) perfCombs.add(c);
+            if (isPerfectComb) perfCombs.add(c);
         }
     }
 
-    public void printinfo() throws IOException {                                                                        // Метод для проверки полученных данных
+    public void printinfo() throws IOException {
         File outputfile = new File("output.txt");
         FileWriter fileWriter = new FileWriter(outputfile);
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
@@ -243,6 +186,20 @@ public class Hypergraph {
         }
 
         bufferedWriter.close();
+    }
+
+    public String hypergraphInfo(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("Количество вершин: " + verts.size());
+        sb.append("\nДоли: \n");
+        for(Proportion p:props){
+            sb.append(p.toString() + "\n");
+        }
+        sb.append("Ребра \n");
+        for(Edge e:edges){
+            sb.append(e.toString() + "\n");
+        }
+        return sb.toString();
     }
 
     public void hypergraphClear(){

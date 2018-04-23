@@ -8,9 +8,7 @@ public class Vert {
     public Vert(int number){
         this.number=number;
     }
-    private int propNumber;
 
-    //Проверка инциндентности с ребром
     public boolean checkIncidence(Edge e){
         boolean b = false;
         for(Vert i:e.getVerts())
@@ -20,7 +18,6 @@ public class Vert {
         }
         return b;
     }
-    //Проверка смежности с вершиной
 
     public boolean checkAdjacency(Vert v, List<Edge> edges){
         boolean b = false;
@@ -34,11 +31,9 @@ public class Vert {
         return b;
     }
 
-
     public int getNumber(){
         return number;
     }
-    public int getPropNumber() {return propNumber;}
 
     public void setNumber(int number) {
         this.number = number;

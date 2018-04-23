@@ -8,7 +8,7 @@ public class Main {
     public static void main(String args[]){
         System.out.println(Time.valueOf(LocalTime.now()));
         Hypergraph h=new Hypergraph();
-        h.partLoad();
+//        h.fullLoad();
         h.buildEdges();
         h.makeMatrixOfAdj();
         h.makecombs();

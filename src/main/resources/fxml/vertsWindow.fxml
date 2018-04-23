@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -26,6 +24,7 @@
                <children>
                   <Button fx:id="btnCancel" mnemonicParsing="false" text="Выход" />
                   <Button fx:id="btnOk" mnemonicParsing="false" text="Далее" />
+                  <Button fx:id="btnLoadFile" mnemonicParsing="false" text="Загрузка файла" />
                </children>
             </HBox>
          </children>

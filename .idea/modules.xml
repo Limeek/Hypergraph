@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Hypergraph.iml" filepath="$PROJECT_DIR$/.idea/Hypergraph.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HypergraphApp.iml" filepath="$PROJECT_DIR$/HypergraphApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/main/main.iml" filepath="$PROJECT_DIR$/src/main/main.iml" />
     </modules>
   </component>
 </project>

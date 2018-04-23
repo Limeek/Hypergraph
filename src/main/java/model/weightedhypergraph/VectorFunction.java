@@ -1,10 +1,6 @@
 package model.weightedhypergraph;
 
 public class VectorFunction {
-//    MAXSUM("MAXSUM"),MINSUM("MINSUM"),AVGSUM("AVGSUM"),MAXAVG("MAXAVG"),
-//    MINAVG("MINAVG"),MAXMAX("MAXMAX"),MINMIN("MINMIN"),MAXMIN("MAXMIN"),
-//    MINMAX("MINMAX");
-
     private String name;
     private int weightNumber;
     private int number;

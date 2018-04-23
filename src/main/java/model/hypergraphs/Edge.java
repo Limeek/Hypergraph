@@ -1,6 +1,5 @@
 package model.hypergraphs;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Edge {
@@ -34,12 +33,13 @@ public class Edge {
     }
     @Override
     public String toString() {
-        String strverts = new String();
+        StringBuilder vertsString = new StringBuilder();
         for(Vert v : verts)
-            strverts += v.getNumber() + " ";
-        return "Ребро № " + this.number + " Вершины: " + strverts;
+            vertsString.append(v.getNumber()).append(" ");
+        return "Ребро № " + this.number + " Вершины: " + vertsString.toString();
     }
 }
+
 
 
 
