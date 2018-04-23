@@ -195,19 +195,20 @@ public class VertsAndPropsWindowController {
         hypergraph.setProps(props);
 
         List<Edge> edges = new ArrayList<>();
+        int edgeNumber = 1;
         for(int i = 1 + propCount; i < 1 + propCount + edgeCount; i++){
             List<Vert> edgeVerts = new ArrayList<>();
             double[] weight = new double[weightCount];
             int count = 0;
-            int number = Integer.parseInt(tableData.get(i).get(0));
-            for(int j = 1; j < propCount + 1; j++) {
+            for(int j = 0; j < propCount; j++) {
                 edgeVerts.add(hypergraph.getVertWithNumber(Integer.parseInt(tableData.get(i).get(j))));
             }
-            for(int w = propCount + 1; w < propCount + 1 + weightCount; w++){
+            for(int w = propCount ; w < propCount + weightCount; w++){
                 weight[count] = Double.parseDouble(tableData.get(i).get(w).replace(",","."));
                 count++;
             }
-            edges.add(new WeightedEdge(edgeVerts,number,weight));
+            edges.add(new WeightedEdge(edgeVerts,edgeNumber,weight));
+            edgeNumber++;
         }
 
         hypergraph.setEdges(edges);

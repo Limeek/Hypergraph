@@ -13,11 +13,6 @@ public class Main {
         h.makeMatrixOfAdj();
         h.makecombs();
         h.calcPerfCombs();
-        try {
-            h.printinfo();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         System.out.println(Time.valueOf(LocalTime.now()));
     }
 }
