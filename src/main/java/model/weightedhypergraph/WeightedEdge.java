@@ -8,10 +8,6 @@ import java.util.List;
 public class WeightedEdge extends Edge {
     private double[] weight;
 
-    public WeightedEdge(List<Vert> verts, int number){
-        super(verts,number);
-        weight=new double[3];
-    }
 
     public WeightedEdge(List<Vert> verts,int number,int weightCount){
         super(verts, number);
