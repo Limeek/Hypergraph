@@ -3,6 +3,7 @@ package util;
 import model.hypergraphs.Edge;
 import model.hypergraphs.Proportion;
 import model.hypergraphs.Vert;
+import model.weightedhypergraph.WeightedEdge;
 import model.weightedhypergraph.WeightedHypergraph;
 
 import java.util.ArrayList;
@@ -63,7 +64,7 @@ public class CheckHypergraph {
 
     public static boolean checkWeightCountMoreThanFive(WeightedHypergraph hypergraph){
        boolean result = true;
-       if(hypergraph.getWeightCount() > 5) result = false;
+       if(((WeightedEdge)hypergraph.getEdges().get(0)).getWeight().length > 5) result = false;
        return result;
     }
 }
