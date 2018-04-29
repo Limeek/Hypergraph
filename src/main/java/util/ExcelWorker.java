@@ -30,29 +30,40 @@ public class ExcelWorker {
         workbook.close();
         return tableData;
     }
-    public static void createFile(List<List<String>> tableData, String filePath, List<Integer> valuesToHighlightInColumns){
+    public static void createFile(List<List<String>> tableData, String filePath, List<List<Integer>> valuesToHighlightInColumns){
+
         Workbook workbook = new HSSFWorkbook();
         CreationHelper creationHelper = workbook.getCreationHelper();
         Sheet sheet = workbook.createSheet("Результаты");
         int columnIterator = 0;
         int rowIterator = 0;
+        int neededValuesIterator = 0;
         for(List<String> stringList : tableData){
             Row row = sheet.createRow(rowIterator);
             columnIterator = 0;
             for(String s : stringList){
                 Cell cell = row.createCell(columnIterator);
                 cell.setCellValue(s);
-                if(columnIterator != 0 && rowIterator != 0)
-                if(rowIterator  == valuesToHighlightInColumns.get(columnIterator - 1) + 1 )       {
-                     HSSFCellStyle cellStyle = ((HSSFWorkbook) workbook).createCellStyle();
-                     cellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-                     cellStyle.setFillForegroundColor(HSSFColor.RED.index);
-                     cell.setCellStyle(cellStyle);
-                }
                 columnIterator++;
             }
             rowIterator++;
         }
+
+        for(int j = 0; j < tableData.get(0).size();j++) {
+            for (int i = 0; i < tableData.size(); i++) {
+                if (i != 0 && j != 0 && neededValuesIterator != valuesToHighlightInColumns.get(j-1).size())
+                    if (i == valuesToHighlightInColumns.get(j - 1).get(neededValuesIterator) + 1) {
+                        Cell cell = sheet.getRow(i).getCell(j);
+                        HSSFCellStyle cellStyle = ((HSSFWorkbook) workbook).createCellStyle();
+                        cellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+                        cellStyle.setFillForegroundColor(HSSFColor.RED.index);
+                        cell.setCellStyle(cellStyle);
+                        neededValuesIterator++;
+                    }
+            }
+            neededValuesIterator = 0;
+        }
+
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(filePath);
             workbook.write(fileOutputStream);

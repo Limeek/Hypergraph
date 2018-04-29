@@ -136,6 +136,7 @@ public class Hypergraph {
 
     public void calcPerfCombs(){
         List<Vert> tmpVerts = new ArrayList<>();
+        List<Combination> tmpCombs = new ArrayList<>();
         Boolean isPerfectComb = false;
         for(Combination c : combs){
             tmpVerts.clear();
@@ -147,7 +148,13 @@ public class Hypergraph {
                 if(verts.get(i).equals(tmpVerts.get(i))) isPerfectComb = true;
                 else {isPerfectComb = false; break;}
             }
-            if (isPerfectComb) perfCombs.add(c);
+            if (isPerfectComb) tmpCombs.add(c);
+        }
+        perfCombs = new ArrayList<>(tmpCombs);
+        int number = 0;
+        for(Combination c : perfCombs){
+            number++;
+            c.setNumber(number);
         }
     }
 

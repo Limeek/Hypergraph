@@ -132,13 +132,15 @@ public class ResultsWindowController {
 
         return stringsList;
     }
-    public List<Integer> calcSolutionValuesForExcel(){
-        List<Integer> neededValues = new ArrayList<>();
+    public List<List<Integer>> calcSolutionValuesForExcel(){
+        List<List<Integer>> neededValues = new ArrayList<>();
         for(int j = 0; j < result.size(); j++){
+            List<Integer> values = new ArrayList<>();
             for(int i = 0; i < result.get(0).size(); i++){
                 if(result.get(j).get(i) == hypergraph.getSolution().getNeededDouble(hypergraph.getSolution().getFuncList().get(j),result.get(j)))
-                    neededValues.add(i);
+                    values.add(i);
             }
+            neededValues.add(values);
         }
         return neededValues;
     }
